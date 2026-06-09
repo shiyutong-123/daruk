@@ -1,0 +1,16 @@
+steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(node_version)
+
+  - script: yarn global add codecov && yarn --non-interactive
+    displayName: 'Install Dependency'
+
+  - script: yarn run tslint
+    displayName: 'Lint Code'
+
+  - script: yarn run test
+    displayName: 'Run Tests'
+
+  - script: yarn run cov
+    displayName: 'Coverage Report'
